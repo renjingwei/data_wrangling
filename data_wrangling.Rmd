@@ -13,12 +13,48 @@ import my first csv
 litters_data = read_csv(file = "./data/FAS_litters.csv")
 litters_data = janitor:: clean_names(litters_data)
 pups_data= read_csv(file = "./data/FAS_pups.csv")
+head(litters_data)
+tail(litters_data)
+
+skimr::skim(litters_data)
 ```
 
 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r pressure}
+litters_data = read_csv(file = "./data/FAS_litters.csv",
+  skip = 10, col_names = FALSE)
+```
+
+```{r pressure2}
+head(pups_data)
+tail(pups_data)
+skimr::skim(pups_data)
+
+
+```
+
+take a look at poups
+```{r pups}
+pups_data = read_csv("./data/FAS_pups.csv", col_types = "ciiiii")
+pups_data=janitor::clean_names(pups_data)
+skimr::skim(pups_data)
+
 ```
 
 
+## other formats
+```{r xls}
+library(readxl)
+mlb11_data = read_excel("./data/mlb11.xlsx", n_max = 20)
+head(mlb11_data, 5)
+mlb11_data_subset= read_excel("./data/mlb11.xlsx", range="A1:E17")
+
+```
+
+read in pulse data:
+```{r}
+library(haven)
+pulse_data = read_sas("./data/public_pulse_data.sas7bdat")
+head(pulse_data, 5)
+```
